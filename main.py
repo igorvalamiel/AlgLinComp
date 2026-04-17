@@ -1,19 +1,19 @@
-
+from gaussiana_pura import gaussiana_pura
 
 # -----------------------------------------------------------------------------------------------------
 def linha(): print('='*90)
 
-def cria_matriz(n):
+def coleta_matriz(n):
     m = []
     for i in range(n):
         linha = [int(j) for j in input(f"Linha {i+1}: ").split()]
         
         if len(linha) != n: raise IndexError #trantando erro se a linha tiver mais q n itens
 
-        m.append(linha)
+        m += linha
     return m
 
-def cria_vetor(n):
+def coleta_vetor(n):
     v = [int(j) for j in input(f"Vetor: ").split()]
 
     if len(v) != n: raise IndexError #tratando erro se o vetor tiver mais q n valores
@@ -32,8 +32,8 @@ linha()
 
 # pegando matriz e vetor
 n = int(input("N = "))
-M = cria_matriz(n)
-V = cria_vetor(n)
+M = coleta_matriz(n)
+V = coleta_vetor(n)
 
 # escolhendo método de solução
 linha()
@@ -49,6 +49,7 @@ linha()
 
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
+    gaussiana_pura(n, M, V)
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada")
 elif metodo == 'c':
@@ -63,7 +64,16 @@ else:
     raise ValueError
 
 
-# vendo andamento
-#print(n)
-#print(M)
-#print(V)
+# matrizes teste
+# |1 2 2| |x1| = |3|
+# |4 4 2| |x2| = |6|
+# |4 6 4| |x3| = |10|
+# x1 = -1   ;   x2 = 3  ;   x3 = -1
+'''
+3
+1 2 2
+4 4 2
+4 6 4
+3 6 10
+a
+'''
