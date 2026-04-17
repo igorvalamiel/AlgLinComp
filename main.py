@@ -1,3 +1,6 @@
+
+
+# -----------------------------------------------------------------------------------------------------
 def linha(): print('='*90)
 
 def cria_matriz(n):
@@ -36,19 +39,25 @@ V = cria_vetor(n)
 linha()
 print("Esse programa usa 4 tipos de métodos para solução de Equações Lineares:")
 print("a) Eliminação Gaussiana")
-print("b) Fatoração LU")
-print("c) Método de Jacobi")
-print("d) Método de Gauss-Seidl")
+print("b) Eliminação Gaussiana otimizada")
+print("c) Fatoração LU")
+print("d) Fatoração LU otimizada")
+print("e) Método de Jacobi")
+print("f) Método de Gauss-Seidl")
 metodo = str(input("\nEscolha o método [a, b, c, d]: ").lower())
 linha()
 
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
 elif metodo == 'b':
-    print("Método escolhido: Fatoração LU")
+    print("Método escolhido: Eliminação Gaussiana Otimizada")
 elif metodo == 'c':
-    print("Método escolhido: Método de Jacobi")
+    print("Método escolhido: Fatoração LU")
 elif metodo == 'd':
+    print("Método escolhido: Fatoração LU Otimizada")
+elif metodo == 'e':
+    print("Método escolhido: Método de Jacobi")
+elif metodo == 'f':
     print("Método escolhido: Método de Gauss-Seidl")
 else:
     raise ValueError
