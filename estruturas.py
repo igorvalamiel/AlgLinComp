@@ -28,7 +28,7 @@ class Matriz():
                     except IndexError:
                         sl.append(other.mat[i][j])
             new_mat.append(sl)
-        new_mat = arrumar(new_mat, max(l_lin), max(l_col))
+        new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
     
     def __sub__(self, other):
@@ -46,7 +46,7 @@ class Matriz():
                     except IndexError:
                         sl.append(other.mat[i][j])
             new_mat.append(sl)
-        new_mat = arrumar(new_mat, max(l_lin), max(l_col))
+        new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
     
     def __mul__(self, other):
@@ -57,7 +57,7 @@ class Matriz():
             for j in range(other.m):
                 for k in range(self.m):
                     new_mat[i][j] += self.mat[i][k] * other.mat[k][j]
-        new_mat = arrumar(new_mat, other.n, self.m)
+        new_mat = self.arrumar(new_mat, other.n, self.m)
         return Matriz(other.n, self.m, new_mat)
     
     def __repr__(self):
@@ -94,35 +94,25 @@ class Matriz():
     def __cols(self):
         return self.col
     
+    def arrumar(self, p, n, m):
+        r = []
+        for i in range(n):
+            for j in range(m):
+                r.append(p[i][j])
+        return r
+    
+    def det(self):
+        return determinant(self.mat)
+    
     n = property(__linhas)
     m = property(__cols)
 
-def det(v):
+def determinant(v):
     if len(v) == 1: return v[0][0]
     elif len(v) == 2: return (v[0][0]*v[1][1])-(v[0][1]*v[1][0])
     else:
         deter = 0
         for c in range(len(v)):
             menor = [x[:c] + x[c+1:] for x in v[1:]]
-            deter += (((-1) ** c) * v[0][c] * det(menor))
+            deter += (((-1) ** c) * v[0][c] * determinant(menor))
         return deter
-
-def arrumar(p, n, m):
-    r = []
-    for i in range(n):
-        for j in range(m):
-            r.append(p[i][j])
-    return r
-
-a = Matriz(2, 2, [1,2,3,4])
-b = Matriz(2, 2, [1,0,1,0])
-print(a)
-print(a+b)
-print(a-b)
-print(a*b)
-a.add_row([5,6])
-b.add_col([2,3])
-print(a, a.n, a.m)
-print(b, b.n, b.m)
-matriz = Matriz(3, 3, [1, 2, 3, 0, 4, 1, 0, 0, 2])
-print(det(matriz.mat))
