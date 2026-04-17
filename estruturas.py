@@ -28,7 +28,7 @@ class Matriz():
                     except IndexError:
                         sl.append(other.mat[i][j])
             new_mat.append(sl)
-        new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
+        new_mat = arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
     
     def __sub__(self, other):
@@ -46,7 +46,7 @@ class Matriz():
                     except IndexError:
                         sl.append(other.mat[i][j])
             new_mat.append(sl)
-        new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
+        new_mat = arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
     
     def __mul__(self, other):
@@ -57,7 +57,7 @@ class Matriz():
             for j in range(other.m):
                 for k in range(self.m):
                     new_mat[i][j] += self.mat[i][k] * other.mat[k][j]
-        new_mat = self.arrumar(new_mat, other.n, self.m)
+        new_mat = arrumar(new_mat, other.n, self.m)
         return Matriz(other.n, self.m, new_mat)
     
     def __repr__(self):
@@ -77,18 +77,22 @@ class Matriz():
         if self[key]:
             self.mat[key[0]][key[1]] = x
     
+    def add_row(self, r):
+        if len(r) != self.lin: raise ValueError
+        self.mat.append(r)
+        self.lin+=1
+    
+    def add_col(self, c):
+        if len(c) != self.col: raise ValueError
+        for i in range(self.lin):
+            self.mat[i].append(c[i])
+        self.col+=1
+    
     def __linhas(self):
         return self.lin
     
     def __cols(self):
         return self.col
-
-    def arrumar(p, n, m):
-        r = []
-        for i in range(n):
-            for j in range(m):
-                r.append(p[i][j])
-        return r
     
     n = property(__linhas)
     m = property(__cols)
@@ -103,12 +107,21 @@ def det(v):
             deter += (((-1) ** c) * v[0][c] * det(menor))
         return deter
 
+def arrumar(p, n, m):
+    r = []
+    for i in range(n):
+        for j in range(m):
+            r.append(p[i][j])
+    return r
+
 a = Matriz(2, 2, [1,2,3,4])
 b = Matriz(2, 2, [1,0,1,0])
 print(a)
 print(a+b)
 print(a-b)
 print(a*b)
+a.add_row([5,6])
+b.add_col([2,3])
 print(a, a.n, a.m)
 print(b, b.n, b.m)
 matriz = Matriz(3, 3, [1, 2, 3, 0, 4, 1, 0, 0, 2])
