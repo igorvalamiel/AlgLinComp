@@ -7,7 +7,7 @@ def coleta_matriz(n):
     m = []
     for i in range(n):
         linha = [int(j) for j in input(f"Linha {i+1}: ").split()]
-        
+
         if len(linha) != n: raise IndexError #trantando erro se a linha tiver mais q n itens
 
         m += linha
@@ -69,11 +69,10 @@ else:
 # |4 4 2| |x2| = |6|
 # |4 6 4| |x3| = |10|
 # x1 = -1   ;   x2 = 3  ;   x3 = -1
-'''
-3
-1 2 2
-4 4 2
-4 6 4
-3 6 10
-a
-'''
+
+#3
+#1 2 2
+#4 4 2
+#4 6 4
+#3 6 10
+#a

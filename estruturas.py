@@ -1,5 +1,3 @@
-# reaproveitando meu código de matriz de Alg. Prog.
-
 class Matriz():
     def __init__(self, n, m, v):
         for i in v:
@@ -30,7 +28,7 @@ class Matriz():
             new_mat.append(sl)
         new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
-    
+
     def __sub__(self, other):
         l_lin = (self.lin, other.lin)
         l_col = (self.col, other.col)
@@ -48,7 +46,7 @@ class Matriz():
             new_mat.append(sl)
         new_mat = self.arrumar(new_mat, max(l_lin), max(l_col))
         return Matriz(max(l_lin), max(l_col), new_mat)
-    
+
     def __mul__(self, other):
         if self.n != other.m:
             raise ValueError
@@ -59,7 +57,7 @@ class Matriz():
                     new_mat[i][j] += self.mat[i][k] * other.mat[k][j]
         new_mat = self.arrumar(new_mat, other.n, self.m)
         return Matriz(other.n, self.m, new_mat)
-    
+
     def __repr__(self):
         s = ''
         for i in self.mat:
@@ -72,38 +70,42 @@ class Matriz():
         if key[0]>self.lin or key[1]>self.col:
             raise IndexError
         return self.mat[key[0]][key[1]]
-    
+
     def __setitem__(self, key, x):
         if self[key]:
             self.mat[key[0]][key[1]] = x
-    
+
     def add_row(self, r):
         if len(r) != self.lin: raise ValueError
         self.mat.append(r)
         self.lin+=1
-    
+
     def add_col(self, c):
         if len(c) != self.col: raise ValueError
         for i in range(self.lin):
             self.mat[i].append(c[i])
         self.col+=1
-    
+
+    def mul_lin(self, lin, value):
+        for i in range(self.m):
+            self.mat[lin][i] *= value
+
     def __linhas(self):
         return self.lin
-    
+
     def __cols(self):
         return self.col
-    
+
     def arrumar(self, p, n, m):
         r = []
         for i in range(n):
             for j in range(m):
                 r.append(p[i][j])
         return r
-    
+
     def det(self):
         return determinant(self.mat)
-    
+
     n = property(__linhas)
     m = property(__cols)
 
