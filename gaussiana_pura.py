@@ -9,15 +9,11 @@ def back_solving(n, M, V):
     x = [0]*n
     m = M.mat[:]
     v = V.mat[:]
-    print(m, v, '\n')
     for j in range(n-1, -1, -1):
       x[j] = (v[j][0])/(m[j][j])
-      print(x[j])
       for i in range(j):
           m[i][j] *= x[j]
           v[i][0] -= m[i][j]
-      print(m, v)
-
     return x
 
 def gaussiana_pura(n, M, V):
@@ -31,6 +27,7 @@ def gaussiana_pura(n, M, V):
             new_mat.mat[j][i] = float((-1*(matr.mat[j][i]))/v)
         matr = new_mat * matr
         vec = new_mat * vec
-
-    print(f"Soluções: {back_solving(n, matr, vec)}")
     
+    xList = back_solving(n, matr, vec)
+    for i in range(n):
+        print(f'x{i+1} = {xList[i]}' )

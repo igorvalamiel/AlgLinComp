@@ -62,17 +62,3 @@ elif metodo == 'f':
     print("Método escolhido: Método de Gauss-Seidl")
 else:
     raise ValueError
-
-
-# matrizes teste
-# |1 2 2| |x1| = |3|
-# |4 4 2| |x2| = |6|
-# |4 6 4| |x3| = |10|
-# x1 = -1   ;   x2 = 3  ;   x3 = -1
-
-#3
-#1 2 2
-#4 4 2
-#4 6 4
-#3 6 10
-#a
