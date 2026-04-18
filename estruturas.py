@@ -1,15 +1,23 @@
 class Matriz():
-    def __init__(self, n, m, v):
-        for i in v:
-            if type(i) != int or i<0:
-                raise ValueError
-        if len(v) != n*m: raise ValueError
+    def __init__(self, n, m, v=0, identity=False):
         self.mat = []
         self.col = m
         self.lin = n
         self.tam = m*n
-        for i in range(0, m*n, m):
-            self.mat.append(v[i:i+m])
+        if v == 0:
+            for i in range(n):
+                l = [0]*m
+                self.mat.append(l)
+            if identity and n == m:
+              for j in range(n):
+                  self.mat[j][j] = 1
+        else:
+
+            if len(v) != n*m: raise ValueError
+
+            v = [float(i) for i in v]
+            for i in range(0, m*n, m):
+                self.mat.append(v[i:i+m])
 
     def __add__(self, other):
         l_lin = (self.lin, other.lin)
@@ -48,15 +56,15 @@ class Matriz():
         return Matriz(max(l_lin), max(l_col), new_mat)
 
     def __mul__(self, other):
-        if self.n != other.m:
+        if self.col != other.lin:
             raise ValueError
-        new_mat = [[0 for _ in range(other.n)] for _ in range(self.m)]
+        new_mat = [[0 for _ in range(other.lin)] for _ in range(self.col)]
         for i in range(self.n):
             for j in range(other.m):
-                for k in range(self.m):
+                for k in range(self.col):
                     new_mat[i][j] += self.mat[i][k] * other.mat[k][j]
-        new_mat = self.arrumar(new_mat, other.n, self.m)
-        return Matriz(other.n, self.m, new_mat)
+        new_mat = self.arrumar(new_mat, self.lin, other.col)
+        return Matriz(self.lin, other.col, new_mat)
 
     def __repr__(self):
         s = ''
