@@ -1,4 +1,5 @@
 from gaussiana_pura import gaussiana_pura
+from gaussiana import gaussiana
 
 # -----------------------------------------------------------------------------------------------------
 def linha(): print('='*90)
@@ -18,6 +19,20 @@ def coleta_vetor(n):
 
     if len(v) != n: raise IndexError #tratando erro se o vetor tiver mais q n valores
 
+    return v
+
+# função que criei para ajustar ao input da biblioteca Numpy
+def arruma_matvec(n, M, is_vector=0):
+    v = []
+    passo = n
+    if is_vector: passo = 1
+    i0 = 0
+
+    for i in range(passo, len(M)+1, passo):
+        v.append(M[i0:i])
+        i0 = i
+    
+    print(v)
     return v
 
 # -----------------------------------------------------------------------------------------------------
@@ -52,6 +67,7 @@ if metodo == 'a':
     gaussiana_pura(n, M, V)
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada")
+    gaussiana(n, arruma_matvec(n, M), arruma_matvec(n, V, 1))
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
 elif metodo == 'd':
