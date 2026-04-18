@@ -62,6 +62,8 @@ print("f) Método de Gauss-Seidl")
 metodo = str(input("\nEscolha o método [a, b, c, d]: ").lower())
 linha()
 
+
+#lembrar de comparar os tempos com e sem biblioteca
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
     gaussiana_pura(n, M, V)
