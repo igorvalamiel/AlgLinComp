@@ -31,8 +31,6 @@ def arruma_matvec(n, M, is_vector=0):
     for i in range(passo, len(M)+1, passo):
         v.append(M[i0:i])
         i0 = i
-    
-    print(v)
     return v
 
 # -----------------------------------------------------------------------------------------------------
