@@ -1,4 +1,5 @@
 from estruturas import Matriz
+
 def cria_matriz(n, M):
     return Matriz(n, n, M)
 

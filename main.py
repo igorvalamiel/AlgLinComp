@@ -1,5 +1,6 @@
 from gaussiana_pura import gaussiana_pura
 from gaussiana import gaussiana
+from LU_pura import LU_pura
 from time import time
 
 # -----------------------------------------------------------------------------------------------------
@@ -69,19 +70,26 @@ if metodo == 'a':
     gaussiana_pura(n, M, V)
     tf = time()
     print(f"Tempo de execução: {tf-ti} segundos.")
+
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada")
     ti = time()
     gaussiana(n, arruma_matvec(n, M), arruma_matvec(n, V, 1))
     tf = time()
     print(f"Tempo de execução: {tf-ti} segundos.")
+
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
+    LU_pura(n, M, V)
+
 elif metodo == 'd':
     print("Método escolhido: Fatoração LU Otimizada")
+
 elif metodo == 'e':
     print("Método escolhido: Método de Jacobi")
+
 elif metodo == 'f':
     print("Método escolhido: Método de Gauss-Seidl")
+
 else:
     raise ValueError
