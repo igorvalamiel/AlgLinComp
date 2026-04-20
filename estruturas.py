@@ -114,6 +114,19 @@ class Matriz():
     def det(self):
         return determinant(self.mat)
 
+    def module(self):
+        soma = 0
+        if self.col == 1 and self.lin != 1:
+            for i in self.mat:
+                soma += (i[0]**2)
+        elif (self.col != 1 and self.lin == 1):
+            for i in self.mat[0]:
+                soma += (i**2)
+        else:
+            print("Isso não é um vetor, não posso calcular o módulo.")
+            return False
+        return soma**0.5
+
     n = property(__linhas)
     m = property(__cols)
 

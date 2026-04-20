@@ -2,6 +2,7 @@ from gaussiana_pura import gaussiana_pura
 from gaussiana import gaussiana
 from LU_pura import LU_pura
 from LU import LU
+from jacobi import jacobi
 
 from verifica import verifica
 from estruturas import Matriz
@@ -92,6 +93,10 @@ elif metodo == 'd':
 
 elif metodo == 'e':
     print("Método escolhido: Método de Jacobi")
+    ti = time()
+    xList_jacobi = jacobi(n, m.mat, v.mat)
+    tf = time()
+    print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'f':
     print("Método escolhido: Método de Gauss-Seidl")
