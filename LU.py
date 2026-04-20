@@ -11,3 +11,5 @@ def LU(n, M, V):
 
     for i in range(n):
         print(f'x{i+1} = {xList[i]}' )
+    
+    return xList

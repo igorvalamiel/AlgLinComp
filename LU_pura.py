@@ -22,7 +22,10 @@ def front_solving(n, M, V): # nome merda mas é a vida
             v[i][0] -= m[i][j]
     return y
 
-def LU_pura(n, matr, vec):
+def LU_pura(n, M, V):
+
+    matr = Matriz(n, n, M)
+    vec = Matriz(n, 1, V)
 
     # derivando matriz em LU (usando algoritmo do slide do prof)
     # não precisei criar mais de uma matriz, já que L e U ocupam espaços diferentes
@@ -38,7 +41,9 @@ def LU_pura(n, matr, vec):
                 matr.mat[x][k] -= matr.mat[x][i] * matr.mat[i][k]
     
     L_solved = front_solving(n, matr, vec)
-    solution = back_solving(n, matr, L_solved)
+    xList = back_solving(n, matr, L_solved)
     print()
     for i in range(n):
-        print(f'x{i+1} = {solution[i]}' )
+        print(f'x{i+1} = {xList[i]}' )
+    
+    return xList

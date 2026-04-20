@@ -3,6 +3,7 @@ from gaussiana import gaussiana
 from LU_pura import LU_pura
 from LU import LU
 
+from verifica import verifica
 from estruturas import Matriz
 from time import time
 
@@ -60,30 +61,34 @@ linha()
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
     ti = time()
-    gaussiana_pura(n, m, v)
+    xList_gaussPura = gaussiana_pura(n, m, v)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
+    print(verifica(n, m, v, xList_gaussPura))
 
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada (Numpy)")
     ti = time()
-    gaussiana(n, m.mat, v.mat)
+    xList_gauss = gaussiana(n, m.mat, v.mat)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
+    print(verifica(n, m, v, xList_gauss))
 
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
     ti = time()
-    LU_pura(n, m, v)
+    xList_luPura = LU_pura(n, M, V) # sim aqui é M e V pra nao ficar moddificando as matrizes originais
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
+    print(verifica(n, m, v, xList_luPura))
 
 elif metodo == 'd':
     print("Método escolhido: Fatoração LU Otimizada (SciPy)")
     ti = time()
-    LU(n, m.mat, v.mat)
+    xList_lu = LU(n, m.mat, v.mat)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
+    print(verifica(n, m, v, xList_lu))
 
 elif metodo == 'e':
     print("Método escolhido: Método de Jacobi")

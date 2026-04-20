@@ -25,3 +25,5 @@ def gaussiana_pura(n, matr, vec):
     print()
     for i in range(n):
         print(f'x{i+1} = {xList[i]}' )
+    
+    return xList
