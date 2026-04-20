@@ -1,7 +1,6 @@
 def is_different(x, y):
     dif = x-y
     if dif < 0: dif *= -1
-    print(dif)
     if dif < 0.00000001: return False
     return True
 
