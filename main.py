@@ -1,5 +1,6 @@
 from gaussiana_pura import gaussiana_pura
 from gaussiana import gaussiana
+from time import time
 
 # -----------------------------------------------------------------------------------------------------
 def linha(): print('='*90)
@@ -64,10 +65,16 @@ linha()
 #lembrar de comparar os tempos com e sem biblioteca
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
+    ti = time()
     gaussiana_pura(n, M, V)
+    tf = time()
+    print(f"Tempo de execução: {tf-ti} segundos.")
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada")
+    ti = time()
     gaussiana(n, arruma_matvec(n, M), arruma_matvec(n, V, 1))
+    tf = time()
+    print(f"Tempo de execução: {tf-ti} segundos.")
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
 elif metodo == 'd':
