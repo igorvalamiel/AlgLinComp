@@ -30,5 +30,6 @@ def gaussiana_pura(n, M, V):
         vec = new_mat * vec
     
     xList = back_solving(n, matr, vec)
+    print()
     for i in range(n):
         print(f'x{i+1} = {xList[i]}' )

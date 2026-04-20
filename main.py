@@ -1,6 +1,8 @@
 from gaussiana_pura import gaussiana_pura
 from gaussiana import gaussiana
 from LU_pura import LU_pura
+from LU import LU
+
 from time import time
 
 # -----------------------------------------------------------------------------------------------------
@@ -54,12 +56,12 @@ V = coleta_vetor(n)
 linha()
 print("Esse programa usa 4 tipos de métodos para solução de Equações Lineares:")
 print("a) Eliminação Gaussiana")
-print("b) Eliminação Gaussiana otimizada")
+print("b) Eliminação Gaussiana otimizada (NumPy)")
 print("c) Fatoração LU")
-print("d) Fatoração LU otimizada")
+print("d) Fatoração LU otimizada (SciPy)")
 print("e) Método de Jacobi")
 print("f) Método de Gauss-Seidl")
-metodo = str(input("\nEscolha o método [a, b, c, d]: ").lower())
+metodo = str(input("\nEscolha o método [a, b, c, d, e, f]: ").lower())
 linha()
 
 
@@ -69,21 +71,28 @@ if metodo == 'a':
     ti = time()
     gaussiana_pura(n, M, V)
     tf = time()
-    print(f"Tempo de execução: {tf-ti} segundos.")
+    print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'b':
-    print("Método escolhido: Eliminação Gaussiana Otimizada")
+    print("Método escolhido: Eliminação Gaussiana Otimizada (Numpy)")
     ti = time()
     gaussiana(n, arruma_matvec(n, M), arruma_matvec(n, V, 1))
     tf = time()
-    print(f"Tempo de execução: {tf-ti} segundos.")
+    print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
+    ti = time()
     LU_pura(n, M, V)
+    tf = time()
+    print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'd':
-    print("Método escolhido: Fatoração LU Otimizada")
+    print("Método escolhido: Fatoração LU Otimizada (SciPy)")
+    ti = time()
+    LU(n, arruma_matvec(n, M), arruma_matvec(n, V))
+    tf = time()
+    print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'e':
     print("Método escolhido: Método de Jacobi")

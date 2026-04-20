@@ -45,9 +45,8 @@ def LU_pura(n, M, V):
             for x in range(i+1, n):
                 matr.mat[x][k] -= matr.mat[x][i] * matr.mat[i][k]
     
-    print(matr, '\n')
     L_solved = front_solving(n, matr, vec)
-    print(L_solved)
     solution = back_solving(n, matr, L_solved)
-    print(solution)
-        
+    print()
+    for i in range(n):
+        print(f'x{i+1} = {solution[i]}' )
