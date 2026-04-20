@@ -26,7 +26,6 @@ def front_solving(n, M, V): # nome merda mas é a vida
         for i in range(j+1, n):
             m[i][j] *= y.mat[j][0]
             v[i][0] -= m[i][j]
-    print(m, )
     return y
 
 def LU_pura(n, M, V):
@@ -49,4 +48,6 @@ def LU_pura(n, M, V):
     print(matr, '\n')
     L_solved = front_solving(n, matr, vec)
     print(L_solved)
+    solution = back_solving(n, matr, L_solved)
+    print(solution)
         
