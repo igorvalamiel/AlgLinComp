@@ -1,11 +1,5 @@
 from estruturas import Matriz
 
-def cria_matriz(n, M):
-    return Matriz(n, n, M)
-
-def cria_vetor(n, M):
-    return Matriz(n, 1, M)
-
 def back_solving(n, M, V):
     x = [0]*n
     m = M.mat[:]
@@ -17,9 +11,7 @@ def back_solving(n, M, V):
           v[i][0] -= m[i][j]
     return x
 
-def gaussiana_pura(n, M, V):
-    matr = cria_matriz(n, M)
-    vec = cria_vetor(n, V)
+def gaussiana_pura(n, matr, vec):
 
     for i in range(0, n-1):
         new_mat = Matriz(n, n, identity=True)

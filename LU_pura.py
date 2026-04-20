@@ -1,11 +1,5 @@
 from estruturas import Matriz
 
-def cria_matriz(n, M):
-    return Matriz(n, n, M)
-
-def cria_vetor(n, M):
-    return Matriz(n, 1, M)
-
 def back_solving(n, M, V):
     x = [0]*n
     m = M.mat[:]
@@ -28,12 +22,10 @@ def front_solving(n, M, V): # nome merda mas é a vida
             v[i][0] -= m[i][j]
     return y
 
-def LU_pura(n, M, V):
-    matr = cria_matriz(n, M)
-    vec = cria_vetor(n, V)
+def LU_pura(n, matr, vec):
 
     # derivando matriz em LU (usando algoritmo do slide do prof)
-    # não é necessário criar mais de uma matriz, já que L e U ocupam espaços diferentes
+    # não precisei criar mais de uma matriz, já que L e U ocupam espaços diferentes
 
     for i in range(n-1):
         # montando a parte L da matriz

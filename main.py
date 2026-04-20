@@ -3,6 +3,7 @@ from gaussiana import gaussiana
 from LU_pura import LU_pura
 from LU import LU
 
+from estruturas import Matriz
 from time import time
 
 # -----------------------------------------------------------------------------------------------------
@@ -25,18 +26,6 @@ def coleta_vetor(n):
 
     return v
 
-# função que criei para ajustar ao input da biblioteca Numpy
-def arruma_matvec(n, M, is_vector=0):
-    v = []
-    passo = n
-    if is_vector: passo = 1
-    i0 = 0
-
-    for i in range(passo, len(M)+1, passo):
-        v.append(M[i0:i])
-        i0 = i
-    return v
-
 # -----------------------------------------------------------------------------------------------------
 # introdução
 linha()
@@ -51,6 +40,8 @@ linha()
 n = int(input("N = "))
 M = coleta_matriz(n)
 V = coleta_vetor(n)
+m = Matriz(n, n, M)
+v = Matriz(n, 1, V)
 
 # escolhendo método de solução
 linha()
@@ -69,28 +60,28 @@ linha()
 if metodo == 'a':
     print("Método escolhido: Eliminação Gaussiana")
     ti = time()
-    gaussiana_pura(n, M, V)
+    gaussiana_pura(n, m, v)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'b':
     print("Método escolhido: Eliminação Gaussiana Otimizada (Numpy)")
     ti = time()
-    gaussiana(n, arruma_matvec(n, M), arruma_matvec(n, V, 1))
+    gaussiana(n, m.mat, v.mat)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'c':
     print("Método escolhido: Fatoração LU")
     ti = time()
-    LU_pura(n, M, V)
+    LU_pura(n, m, v)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'd':
     print("Método escolhido: Fatoração LU Otimizada (SciPy)")
     ti = time()
-    LU(n, arruma_matvec(n, M), arruma_matvec(n, V))
+    LU(n, m.mat, v.mat)
     tf = time()
     print(f"\nTempo de execução: {tf-ti} segundos.")
 

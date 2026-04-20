@@ -5,10 +5,9 @@ def LU(n, M, V):
     m = np.array(M)
     v = np.array(V)
 
-    print(m, v)
-
     lu, piv = lu_factor(m)
     xList = lu_solve((lu, piv), v)
+    xList = xList.ravel()
 
     for i in range(n):
         print(f'x{i+1} = {xList[i]}' )
