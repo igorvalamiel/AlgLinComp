@@ -16,6 +16,10 @@ def jacobizinho(n, m, v, x0, iter):
     subt_vec = vec_xi - vec_x0
     R = subt_vec.module() / vec_xi.module()
 
+    if R > 0.00001: jacobizinho(n, m, v, xi, iter+1)
+
+    print(iter+1, x0, xi, R)
+    
     return [iter+1, x0, xi, R]
 
 def jacobi(N, M, V):
@@ -27,5 +31,4 @@ def jacobi(N, M, V):
     x0 = [1]*N
     
     res = jacobizinho(N, M, V, x0, iterations)
-    
-    print(res)
+
