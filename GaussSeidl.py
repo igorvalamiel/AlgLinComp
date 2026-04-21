@@ -3,7 +3,7 @@ from chart_creator import create_chart
 from time import time
 
 def gs(n, m, v, x0, iter, r_list, r_min, it_max):
-    xi = [1 for _ in range(n)]
+    xi = [0 for _ in range(n)]
 
     for i in range(n):
         bi = v[i][0]
@@ -12,7 +12,7 @@ def gs(n, m, v, x0, iter, r_list, r_min, it_max):
         soma0 = 0
         for j in range(0, n):
             if j < i: soma1 += m[i][j] * xi[j]
-            elif j >= i: soma0 += m[i][j] * x0[j]
+            elif j > i: soma0 += m[i][j] * x0[j]
         
         xi[i] = (bi - soma1 - soma0) / ai
     
@@ -45,6 +45,6 @@ def gauss_seidl(N, M, V, R_min=0.0001, iter_max=50, salvar_chart=0):
     
     tf = time()
 
-    #create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)", save_chart=salvar_chart) 
+    create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)", save_chart=salvar_chart) 
     
     return [xList[2], tf]
