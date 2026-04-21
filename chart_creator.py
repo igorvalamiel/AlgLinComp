@@ -3,13 +3,20 @@ import numpy as np
 
 def create_chart(dataX, dataY, title, xname, yname, graphsize=(12,6), save_chart=0):
     
-    #plotting the chart
-    plt.plot(dataX, dataY)
+    #tamanho do grafico
+    plt.figure(figsize=graphsize)
 
-    #chart config
+    #plotting the chart
+    plt.plot(dataX, dataY, color='green')
+
+    # enfeites do chart
     plt.xlabel(xname)
     plt.ylabel(yname)
     plt.title(title)
+    plt.grid(True, axis='both', color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
+
+    #usando log
+    plt.yscale('log')
 
     if save_chart:
         plt.savefig(f'{title}.png', dpi=150, bbox_inches='tight')
@@ -17,7 +24,7 @@ def create_chart(dataX, dataY, title, xname, yname, graphsize=(12,6), save_chart
         plt.show()
 
 
-x = [1, 2, 3, 4, 5]
-y = [9, 8, 7, 6, 5]
-
-create_chart(x, y, "teste", "eixo x", "eixo y")
+#x = [1, 2, 3, 4.8, 5]
+#y = [9, 8, 7.5, 6, 5]
+#
+#create_chart(x, y, "teste", "eixo x", "eixo y")
