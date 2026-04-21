@@ -3,15 +3,18 @@ from chart_creator import create_chart
 from time import time
 
 def gs(n, m, v, x0, iter, r_list, r_min, it_max):
-    xi = [0 for _ in range(n)]
+    xi = [1 for _ in range(n)]
 
     for i in range(n):
         bi = v[i][0]
         ai = m[i][i]
-        soma = 0
-        for j in range(n):
-            if i != j : soma += (m[i][j] * x0[j])
-        xi[i] = (bi-soma)/ai
+        soma1 = 0
+        soma0 = 0
+        for j in range(0, n):
+            if j < i: soma1 += m[i][j] * xi[j]
+            elif j >= i: soma0 += m[i][j] * x0[j]
+        
+        xi[i] = (bi - soma1 - soma0) / ai
     
     vec_x0 = Matriz(n, 1, x0)
     vec_xi = Matriz(n, 1, xi)

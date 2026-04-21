@@ -3,6 +3,7 @@ from gaussiana import gaussiana
 from LU_pura import LU_pura
 from LU import LU
 from jacobi import jacobi
+from GaussSeidl import gauss_seidl
 
 from verifica import verifica
 from estruturas import Matriz
@@ -100,6 +101,10 @@ elif metodo == 'e':
 
 elif metodo == 'f':
     print("Método escolhido: Método de Gauss-Seidl")
+    ti = time()
+    xList_gauss_seidl, tf = gauss_seidl(n, m.mat, v.mat, salvar_chart=False) # tive que colocar o tf aqui pra nao contar o tempo de fazer o gráfico
+    print(f"\nTempo de execução: {tf-ti} segundos.")
+    print(verifica(n, m, v, xList_gauss_seidl))
 
 else:
     raise ValueError
