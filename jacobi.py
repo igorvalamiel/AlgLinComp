@@ -1,5 +1,6 @@
 from estruturas import Matriz
 from chart_creator import create_chart
+from time import time
 
 def jacobizinho(n, m, v, x0, iter, r_list, r_min, it_max):
     xi = [0 for _ in range(n)]
@@ -38,7 +39,9 @@ def jacobi(N, M, V, R_min=0.0001, iter_max=50):
 
     for i in range(N):
         print(f'x{i+1} = {xList[2][i]}' )
-
-    create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)") 
     
-    return xList[2]
+    tf = time()
+
+    #create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)") 
+    
+    return [xList[2], tf]
