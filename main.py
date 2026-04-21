@@ -96,6 +96,7 @@ elif metodo == 'e':
     ti = time()
     xList_jacobi = jacobi(n, m.mat, v.mat)
     tf = time()
+    print(verifica(n, m, v, xList_jacobi))  # ver com professor se precisa mesmo de verificar o jacobi ou poded só usar o R
     print(f"\nTempo de execução: {tf-ti} segundos.")
 
 elif metodo == 'f':
