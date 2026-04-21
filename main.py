@@ -94,7 +94,7 @@ elif metodo == 'd':
 elif metodo == 'e':
     print("Método escolhido: Método de Jacobi")
     ti = time()
-    xList_jacobi, tf = jacobi(n, m.mat, v.mat) # tive que colocar o tf aqui pra nao contar o tempo de fazer o gráfico
+    xList_jacobi, tf = jacobi(n, m.mat, v.mat, salvar_chart=False) # tive que colocar o tf aqui pra nao contar o tempo de fazer o gráfico
     print(f"\nTempo de execução: {tf-ti} segundos.")
     print(verifica(n, m, v, xList_jacobi))  # ver com professor se precisa mesmo de verificar o jacobi ou poded só usar o R
 

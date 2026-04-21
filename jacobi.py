@@ -25,8 +25,7 @@ def jacobizinho(n, m, v, x0, iter, r_list, r_min, it_max):
 
     return [iter+1, x0, xi, r_list]
 
-def jacobi(N, M, V, R_min=0.0001, iter_max=50):
-
+def jacobi(N, M, V, R_min=0.0001, iter_max=50, salvar_chart=0):
     # contando as iterações
     iterations = 0
     
@@ -42,6 +41,6 @@ def jacobi(N, M, V, R_min=0.0001, iter_max=50):
     
     tf = time()
 
-    #create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)") 
+    create_chart(list(range(1, xList[0]+1)), xList[3], "Método Jacobi - Log(R) x Iter", "Iterações", "Log(R)", save_chart=salvar_chart) 
     
     return [xList[2], tf]
