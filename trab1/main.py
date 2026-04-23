@@ -15,7 +15,7 @@ def linha(): print('='*90)
 def coleta_matriz(n):
     m = []
     for i in range(n):
-        linha = [int(j) for j in input(f"Linha {i+1}: ").split()]
+        linha = [float(j) for j in input(f"Linha {i+1}: ").split()]
 
         if len(linha) != n: raise IndexError #trantando erro se a linha tiver mais q n itens
 
@@ -23,7 +23,7 @@ def coleta_matriz(n):
     return m
 
 def coleta_vetor(n):
-    v = [int(j) for j in input(f"Vetor: ").split()]
+    v = [float(j) for j in input(f"Vetor: ").split()]
 
     if len(v) != n: raise IndexError #tratando erro se o vetor tiver mais q n valores
 

@@ -14,6 +14,13 @@ def back_solving(n, M, V):
 def gaussiana_pura(n, matr, vec):
 
     for i in range(0, n-1):
+
+        # fazendo pivotamento parcial para evitar divisão por 0 da diagonal principal (claude.ai fez essas prox. 4 linhas)
+        max_row = max(range(i, n), key=lambda r: abs(matr.mat[r][i]))
+        if i != max_row:
+            matr.mat[i], matr.mat[max_row] = matr.mat[max_row], matr.mat[i]
+            vec.mat[i],   vec.mat[max_row] = vec.mat[max_row],   vec.mat[i]
+
         new_mat = Matriz(n, n, identity=True)
         for j in range(i, n):
             v = matr.mat[i][i]
