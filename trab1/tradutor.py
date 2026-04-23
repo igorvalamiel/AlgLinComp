@@ -1,6 +1,9 @@
 """
         OBS: Esse código foi gerado 100% pela Claude.ai!!!!
 
+        executando o código:
+        python tradutor.py west0067.mtx west0067.txt 
+
 Conversor de arquivo Matrix Market (.mtx) para .txt
 no formato de entrada do sistema linear:
   - Linha 1: N (tamanho da matriz)
@@ -17,7 +20,7 @@ def ler_matrix_market(nome_arquivo):
     Lê um arquivo .mtx no formato Matrix Market (coordinate ou array).
     Retorna (n_linhas, n_colunas, matriz densa como lista de listas).
     """
-    with open(f"../matrizes_teste/{nome_arquivo}", 'r') as f:
+    with open(nome_arquivo) as f:
         linhas = f.readlines()
 
     # Processar cabeçalho
