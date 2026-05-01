@@ -28,7 +28,7 @@ Matriz teste: west0067
 
 Matriz teste: fs_760_1
     gaussiana_pura.py:
-        - Mais que 1 minuto para rodar 1 vez.
+        - Mais que 1 minuto para rodar 1 vez. (Motivo: no código, a classe Matriz realiza a operação de multiplicação com complexidade O(n^3))
     gaussiana.py:
         - 0.1560049057006836
         - 0.1118783950805664
