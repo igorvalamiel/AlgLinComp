@@ -64,7 +64,23 @@ class Matriz():
                 for k in range(self.col):
                     new_mat[i][j] += self.mat[i][k] * other.mat[k][j]
         new_mat = self.arrumar(new_mat, self.lin, other.col)
+
+        if (self.lin == other.col == 1): return new_mat[0]
         return Matriz(self.lin, other.col, new_mat)
+
+    def multiplicar(self, num):
+        if self.n == 1:
+            new_mat = [num*i for i in self.mat]
+            return Matriz(self.lin, self.col, new_mat)
+        elif self.m == 1:
+            new_mat = [num*i[0] for i in self.mat]
+            return Matriz(self.lin, self.col, new_mat)
+        else:
+            new_mat = Matriz(self.n, self.m)
+            for i in range(self.n):
+                for j in range(self.m):
+                    new_mat.mat[i][j] = num * self.mat[i][j]
+            return new_mat
 
     def __repr__(self):
         s = ''
@@ -119,7 +135,7 @@ class Matriz():
         if self.col == 1 and self.lin != 1:
             for i in self.mat:
                 soma += (i[0]**2)
-        elif (self.col != 1 and self.lin == 1):
+        elif self.col != 1 and self.lin == 1:
             for i in self.mat[0]:
                 soma += (i**2)
         else:
@@ -139,3 +155,11 @@ def determinant(v):
             menor = [x[:c] + x[c+1:] for x in v[1:]]
             deter += (((-1) ** c) * v[0][c] * determinant(menor))
         return deter
+
+def transpose(M):
+    Mt = Matriz(M.m, M.n)
+    for i in range(M.n):
+        for j in range(M.m):
+            Mt.mat[j][i] = M.mat[i][j]
+
+    return Mt
