@@ -56,15 +56,18 @@ def CG_method(tau, r_min=1e-16, it_max=20):
 
 
 # [0.01, 0.05, 0.1, 0.2] ~> OBS: ver com professor se precisa fazer todos os testes de tau com a mesma matriz
-M, itList, rList = CG_method(0.01)
+for tau in [0.01, 0.05, 0.1, 0.2]:
+    print(f"tau = {tau}")
+    print('_'*50)
+    M, itList, rList = CG_method(tau)
 
-for i in range(1, 501):
-    print(f"x{i}: {M.mat[i-1][0]}")
+    for i in range(1, 501):
+        print(f"x{i}: {M.mat[i-1][0]}")
 
-print('~'*50)
+    print('~'*50)
 
-for i in range(len(itList)):
-    print(f"it [{itList[i]}] :    r ~> {rList[i]}")
+    for i in range(len(itList)):
+        print(f"it [{itList[i]}] :    r ~> {rList[i]}")
 
-print('~'*50)
+    print('~'*50)
 
