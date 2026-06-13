@@ -53,11 +53,3 @@ else:
     print("\nRealizando Método Iterativo de Gradientes Conjugados:\n")
     CG_method(n, m, v)
 
-'''
-1
-3
-4 1 0
-1 4 1
-0 1 4
-5 6 5
-'''

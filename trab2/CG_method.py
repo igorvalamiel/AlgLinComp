@@ -1,5 +1,5 @@
-from CG_estruturas import CG_Matriz, teste_de_aplicacao
-from estruturas import Matriz, transpose
+from CG_estruturas import CG_Matriz, teste_de_aplicacao, CG_transpose
+from estruturas import Matriz
 from random import randint
 
 def calling_CG_method(n, A, b, r_min, it_max):
@@ -12,12 +12,12 @@ def calling_CG_method(n, A, b, r_min, it_max):
     it_list = [0]
     r_list = [r.module()]
 
-    r_old = transpose(r) * r
+    r_old = CG_transpose(r) * r
 
     for it in range(1, it_max + 1):
 
         Av = A * v
-        vAv = transpose(v) * Av
+        vAv = CG_transpose(v) * Av
 
         # passo
         ai = r_old/vAv
@@ -35,15 +35,10 @@ def calling_CG_method(n, A, b, r_min, it_max):
         if r_mod <= r_min:
             break
 
-        r_new = transpose(r) * r
-
-        # atualizacao de Beta (fator correcao)
-        Beta = r_new/r_old
-
+        r_new = CG_transpose(r) * r
+        Beta = r_new/r_old # atualizacao de Beta (fator correcao)
         r_old = r_new
-
-        # ataulizacao do v (vetor de direcao)
-        v = r + (v.multiplicar(Beta))
+        v = r + (v.multiplicar(Beta)) # ataulizacao do v (vetor de direcao)
 
     return x, it_list, r_list
 
@@ -81,7 +76,7 @@ def CG_method(n=500, A=None, b=None, r_min=1e-16, it_max=20):
 
         # testando matriz
         A_filtrada = A.filtro_de_corte(tau)
-        teste = teste_de_aplicacao(A_filtrada)
+        teste = teste_de_aplicacao(A_filtrada, n)
         if not teste[0]: raise teste[1]
         else: print(teste[1])
 

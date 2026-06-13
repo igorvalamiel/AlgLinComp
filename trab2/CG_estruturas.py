@@ -1,4 +1,4 @@
-from estruturas import Matriz, transpose
+from estruturas import Matriz
 import random
 from copy import deepcopy
 
@@ -7,7 +7,7 @@ class CG_Matriz(Matriz):
         super().__init__(n, m, v, identity=True)
 
         for i in range(n-1):
-            for j in range(i+1, n):
+            for j in range(i+1, m):
                 if i == j: print("Deu merda")
                 valor = random.uniform(-1,1)
                 self.mat[i][j] = valor
@@ -26,19 +26,27 @@ class CG_Matriz(Matriz):
                     nova.mat[j][i] = 0
 
         return nova
+    
+def CG_transpose(M):
+    Mt = CG_Matriz(M.m, M.n)
+    for i in range(M.n):
+        for j in range(M.m):
+            Mt.mat[j][i] = M.mat[i][j]
 
-def teste_de_aplicacao(A):
+    return Mt
+
+def teste_de_aplicacao(A, n):
 
     # verificando simetria 
-    B = A - transpose(A)
+    B = A - CG_transpose(A)
     maior = 0
     for i in range(B.lin):
         for j in range(B.col):
             maior = max(maior, abs(B.mat[i][j]))
 
     # verificando positividade
-    y = Matriz(500,1,[1]*500)
-    v2 = transpose(y)*A*y
+    y = Matriz(n,1,[1]*n)
+    v2 = CG_transpose(y)*A*y
 
     if maior != 0:
         if v2 <= 0:
