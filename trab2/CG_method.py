@@ -48,6 +48,21 @@ def calling_CG_method(A, b, r_min, it_max):
     return x, it_list, r_list
 
 
+def make_graph(dados_dos_testes):
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(10, 6))
+    
+    for tau, (itList, rList) in dados_dos_testes.items():
+        plt.plot(itList, rList, label=f'tau = {tau}', marker='o', markersize=3)
+    
+    plt.xlabel('Iterações')
+    plt.ylabel('Módulo do Resíduo (r)')
+    plt.title('Convergência do Gradiente Conjugado para diferentes valores de Tau')
+    plt.yscale('log')
+    plt.grid(True, which="both", ls="--")
+    plt.legend()
+    plt.show()
+
 
 def CG_method(r_min=1e-16, it_max=20):
     # iniciando matrizes para o teste
@@ -55,6 +70,8 @@ def CG_method(r_min=1e-16, it_max=20):
     
     random_list = [randint(-10, 10) for _ in range(500)]
     b = Matriz(500, 1, random_list)
+
+    data_dict = {}
     
     for tau in [0.01, 0.05, 0.1, 0.2]:
         print(f"tau = {tau}")
@@ -68,6 +85,7 @@ def CG_method(r_min=1e-16, it_max=20):
 
         # fazendo o metodo
         M, itList, rList = calling_CG_method(A_filtrada, b, r_min, it_max)
+        data_dict[tau] = (itList, rList)
 
         # printando os resultados
         for i in range(1, 501):
@@ -79,5 +97,7 @@ def CG_method(r_min=1e-16, it_max=20):
             print(f"it [{itList[i]}] :    r ~> {rList[i]}")
 
         print('~'*50)
+        
+    make_graph(data_dict)
 
 CG_method()
