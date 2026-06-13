@@ -42,6 +42,7 @@ def calling_CG_method(n, A, b, r_min, it_max):
 
     return x, it_list, r_list
 
+# -----------------------------------------------------------------------------------
 
 def make_graph(dados_dos_testes):
     import matplotlib.pyplot as plt
@@ -58,6 +59,7 @@ def make_graph(dados_dos_testes):
     plt.legend()
     plt.show()
 
+# -----------------------------------------------------------------------------------
 
 def CG_method(n=500, A=None, b=None, r_min=1e-16, it_max=20):
 
@@ -96,4 +98,3 @@ def CG_method(n=500, A=None, b=None, r_min=1e-16, it_max=20):
         print('~'*50)
         
     make_graph(data_dict)
-
