@@ -2,8 +2,8 @@ from CG_estruturas import CG_Matriz, teste_de_aplicacao
 from estruturas import Matriz, transpose
 from random import randint
 
-def calling_CG_method(A, b, r_min, it_max):
-    x = Matriz(500, 1)
+def calling_CG_method(n, A, b, r_min, it_max):
+    x = Matriz(n, 1)
     v = b - (A * x)
     r = b - (A * x)
 
@@ -64,12 +64,14 @@ def make_graph(dados_dos_testes):
     plt.show()
 
 
-def CG_method(r_min=1e-16, it_max=20):
-    # iniciando matrizes para o teste
-    A = CG_Matriz(500, 500)
+def CG_method(n=500, A=None, b=None, r_min=1e-16, it_max=20):
+
+    if A is None:
+        A = CG_Matriz(500, 500)
     
-    random_list = [randint(-10, 10) for _ in range(500)]
-    b = Matriz(500, 1, random_list)
+    if b is None:
+        random_list = [randint(-10, 10) for _ in range(n)]
+        b = Matriz(n, 1, random_list)
 
     data_dict = {}
     
@@ -84,11 +86,11 @@ def CG_method(r_min=1e-16, it_max=20):
         else: print(teste[1])
 
         # fazendo o metodo
-        M, itList, rList = calling_CG_method(A_filtrada, b, r_min, it_max)
+        M, itList, rList = calling_CG_method(n, A_filtrada, b, r_min, it_max)
         data_dict[tau] = (itList, rList)
 
         # printando os resultados
-        for i in range(1, 501):
+        for i in range(1, n+1):
             print(f"x{i}: {M.mat[i-1][0]}")
 
         print('~'*50)
@@ -100,4 +102,3 @@ def CG_method(r_min=1e-16, it_max=20):
         
     make_graph(data_dict)
 
-CG_method()
